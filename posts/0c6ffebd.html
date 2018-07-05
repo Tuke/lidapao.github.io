@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ContOS搭建PPTP服务器 | 李大炮的研发日记 | 不折腾，和咸鱼有什么区别？</title>
+
+  
+  <meta name="author" content="lidapao">
+  
+
+  
+  <meta name="description" content="环境ContOS 6
+1. 更新yum1yum -y update
+2. 判断ppp是否可用12cat /dev/ppp# cat: /dev/ppp: No such device or address
+如果出现跟上面一样的信息「No such device or address」，那不用担心，这表示 ppp 是可用的，可以正常架设 pptp。
+如果出现的是「Permission denied」，表示 ppp 是关闭的，下面的步骤就可以不用再看了。">
+  
+
+  
+  
+  <meta name="keywords" content="技术">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="ContOS搭建PPTP服务器"/>
+
+  <meta property="og:site_name" content="李大炮的研发日记"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="李大炮的研发日记" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">李大炮的研发日记</a>
+    </h1>
+    <p class="site-description">不折腾，和咸鱼有什么区别？</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/about/">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>ContOS搭建PPTP服务器</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/0c6ffebd.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-08-31T16:00:00.000Z">
+          2017-09-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>环境ContOS 6</p>
+<h4 id="1-更新yum"><a href="#1-更新yum" class="headerlink" title="1. 更新yum"></a>1. 更新yum</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">yum -y update</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-判断ppp是否可用"><a href="#2-判断ppp是否可用" class="headerlink" title="2. 判断ppp是否可用"></a>2. 判断ppp是否可用</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /dev/ppp</span><br><span class="line"><span class="comment"># cat: /dev/ppp: No such device or address</span></span><br></pre></td></tr></table></figure>
+<p>如果出现跟上面一样的信息「No such device or address」，那不用担心，这表示 ppp 是可用的，可以正常架设 pptp。</p>
+<p>如果出现的是「Permission denied」，表示 ppp 是关闭的，下面的步骤就可以不用再看了。<br><a id="more"></a></p>
+<h4 id="3-安裝-ppp-与-iptables"><a href="#3-安裝-ppp-与-iptables" class="headerlink" title="3. 安裝 ppp 与 iptables"></a>3. 安裝 ppp 与 iptables</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install<span class="built_in"> ppp </span>iptables</span><br><span class="line">cp -rpf /etc/sysconfig/iptables /etc/sysconfig/iptables.pptpsave</span><br></pre></td></tr></table></figure>
+<h4 id="4-安装-pptp"><a href="#4-安装-pptp" class="headerlink" title="4. 安装 pptp"></a>4. 安装 pptp</h4><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 32位</span></span><br><span class="line"><span class="keyword">cd</span> <span class="string">/usr/src</span></span><br><span class="line">wget http:<span class="string">//poptop.sourceforge.net/yum/stable/rhel6/i386/pptpd-1.4.0-1.el6.i686.rpm</span>  </span><br><span class="line">rpm -ivh pptpd-1.4.0-1.el6.i686.rpm <span class="params">--force</span> <span class="params">--nodeps</span>  </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 64位</span></span><br><span class="line"><span class="keyword">cd</span> <span class="string">/usr/src</span></span><br><span class="line">wget http:<span class="string">//poptop.sourceforge.net/yum/stable/rhel6/x86_64/pptpd-1.4.0-1.el6.x86_64.rpm</span>  <span class="comment"># 64</span></span><br><span class="line">rpm -ivh pptpd-1.4.0-1.el6.x86_64.rpm <span class="params">--force</span> <span class="params">--nodeps</span></span><br></pre></td></tr></table></figure>
+<h4 id="6-允许数据包转发"><a href="#6-允许数据包转发" class="headerlink" title="6. 允许数据包转发"></a>6. 允许数据包转发</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf  </span><br><span class="line">  </span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Controls IP packet forwarding</span></span><br><span class="line">net.ipv4.ip_forward = 1</span><br></pre></td></tr></table></figure>
+<h4 id="7-执行下面命令"><a href="#7-执行下面命令" class="headerlink" title="7. 执行下面命令"></a>7. 执行下面命令</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p # 调整内核参数</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 追加pptp配置</span></span><br><span class="line">echo <span class="string">"localip 192.168.240.1"</span> &gt;&gt; /etc/pptpd.conf</span><br><span class="line">echo <span class="string">"remoteip 192.168.240.101-200"</span> &gt;&gt; /etc/pptpd.conf</span><br><span class="line">echo <span class="string">"ms-dns 8.8.8.8"</span> &gt;&gt; /etc/ppp/options.pptpd</span><br><span class="line">echo <span class="string">"ms-dns 8.8.4.4"</span> &gt;&gt; /etc/ppp/options.pptpd</span><br><span class="line">   </span><br><span class="line"><span class="comment"># 配置防火墙</span></span><br><span class="line">iptables --flush POSTROUTING --table nat</span><br><span class="line">iptables --flush FORWARD</span><br><span class="line">iptables -A INPUT -p tcp -m tcp --dport 1723 -j ACCEPT</span><br><span class="line">iptables -A INPUT -p gre -j ACCEPT</span><br><span class="line">iptables -t<span class="built_in"> nat </span>-A POSTROUTING -s 192.168.240.0/24 -o eth0 -j MASQUERADE</span><br><span class="line"><span class="comment"># 重启服务</span></span><br><span class="line">service iptables save</span><br><span class="line">service pptpd restart</span><br><span class="line">service iptables restart</span><br><span class="line">chkconfig pptpd on</span><br><span class="line">chkconfig iptables on</span><br></pre></td></tr></table></figure>
+<p>上面这些指令会创造一个 192.168.240.* 的网段给连上来的 vpn 用户使用，并通过 Server 上的 eth0 转送对外上网的封包 (你可以自行将 192.168.240 与 eth0 改成符合你需求的设定)。</p>
+<h4 id="8-加入-VPN-账号"><a href="#8-加入-VPN-账号" class="headerlink" title="8. 加入 VPN 账号"></a>8. 加入 VPN 账号</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="meta-keyword">/etc/</span>ppp/chap-secrets</span><br><span class="line">  </span><br><span class="line"><span class="meta"># 帐号名称 pptpd 密码 *</span></span><br></pre></td></tr></table></figure>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><h4 id="807-错误"><a href="#807-错误" class="headerlink" title="807 错误"></a>807 错误</h4><p>在 VPN 拨号时，如果出现807错误(计算机与VPN服务器之间的网络连接被中断)，或是其它在验证登陆信息之前出现的错误。<br>如果确定不是自己电脑的问题，你可以编辑 Server 的 /etc/sysconfig/iptables，查看是否有这两条配置:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -<span class="selector-tag">p</span> tcp -m tcp --dport <span class="number">1723</span> -j ACCEPT</span><br><span class="line">-A INPUT -<span class="selector-tag">p</span> gre -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>并且这两条配置不能在「-A INPUT -j REJECT …」的规则下面。如果有这种情形，把他移动到「-A INPUT -J REJECT …」的上方。</p>
+<p>保存之后重启 iptables:<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service iptables restart</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="734-错误"><a href="#734-错误" class="headerlink" title="734 错误"></a>734 错误</h4><p>在 VPN 拨号时，如果出现 734 错误 (已经终止 PPP 连结控制通讯协定)，请修改 Windows 的 VPN 安全性设定:</p>
+<ol>
+<li>将资料加密改为「可省略加密」</li>
+<li>勾选「未加密的密码」</li>
+<li>勾选「Challenge Handshake 验证通讯协定」</li>
+</ol>
+<p>附：<br>一键安装脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">installVPN</span></span>()&#123;</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"begin to install VPN services"</span>;</span><br><span class="line">true<span class="comment">#check wether vps suppot ppp and tun</span></span><br><span class="line">true</span><br><span class="line">trueyum remove -y pptpd ppp</span><br><span class="line">trueiptables --flush POSTROUTING --table nat</span><br><span class="line">trueiptables --flush FORWARD</span><br><span class="line">truerm -rf /etc/pptpd.conf</span><br><span class="line">truerm -rf /etc/ppp</span><br><span class="line">true</span><br><span class="line">truearch=`uname -m`</span><br><span class="line">true</span><br><span class="line">truewget http://www.hi-vps.com/downloads/dkms-2.0.17.5-1.noarch.rpm</span><br><span class="line">truewget http://wty.name/linux/sources/kernel_ppp_mppe-1.0.2-3dkms.noarch.rpm</span><br><span class="line">truewget http://www.hi-vps.com/downloads/kernel_ppp_mppe-1.0.2-3dkms.noarch.rpm</span><br><span class="line">truewget http://www.hi-vps.com/downloads/pptpd-1.3.4-2.el6.<span class="variable">$arch</span>.rpm</span><br><span class="line">truewget http://www.hi-vps.com/downloads/ppp-2.4.5-17.0.rhel6.<span class="variable">$arch</span>.rpm</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">trueyum -y install make libpcap iptables gcc-c++ logrotate tar cpio perl pam tcp_wrappers</span><br><span class="line">truerpm -ivh dkms-2.0.17.5-1.noarch.rpm</span><br><span class="line">truerpm -ivh kernel_ppp_mppe-1.0.2-3dkms.noarch.rpm</span><br><span class="line">truerpm -qa kernel_ppp_mppe</span><br><span class="line">truerpm -Uvh ppp-2.4.5-17.0.rhel6.<span class="variable">$arch</span>.rpm	</span><br><span class="line">truerpm -ivh pptpd-1.3.4-2.el6.<span class="variable">$arch</span>.rpm</span><br><span class="line">  </span><br><span class="line">truemknod /dev/ppp c 108 0 </span><br><span class="line">true<span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward </span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"mknod /dev/ppp c 108 0"</span> &gt;&gt; /etc/rc.local</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"echo 1 &gt; /proc/sys/net/ipv4/ip_forward"</span> &gt;&gt; /etc/rc.local</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"localip 172.16.36.1"</span> &gt;&gt; /etc/pptpd.conf</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"remoteip 172.16.36.2-254"</span> &gt;&gt; /etc/pptpd.conf</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"ms-dns 8.8.8.8"</span> &gt;&gt; /etc/ppp/options.pptpd</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"ms-dns 8.8.4.4"</span> &gt;&gt; /etc/ppp/options.pptpd</span><br><span class="line">  </span><br><span class="line">truepass=`openssl rand 6 -base64`</span><br><span class="line">true<span class="keyword">if</span> [ <span class="string">"<span class="variable">$1</span>"</span> != <span class="string">""</span> ]</span><br><span class="line">true<span class="keyword">then</span> pass=<span class="variable">$1</span></span><br><span class="line">true<span class="keyword">fi</span></span><br><span class="line">  </span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"vpn pptpd <span class="variable">$&#123;pass&#125;</span> *"</span> &gt;&gt; /etc/ppp/chap-secrets</span><br><span class="line">  </span><br><span class="line">trueiptables -t nat -A POSTROUTING -s 172.16.36.0/24 -j SNAT --to-source `ifconfig  | grep <span class="string">'inet addr:'</span>| grep -v <span class="string">'127.0.0.1'</span> | cut -d: -f2 | awk <span class="string">'NR==1 &#123; print $1&#125;'</span>`</span><br><span class="line">trueiptables -A FORWARD -p tcp --syn -s 172.16.36.0/24 -j TCPMSS --<span class="built_in">set</span>-mss 1356</span><br><span class="line">trueservice iptables save</span><br><span class="line">  </span><br><span class="line">truechkconfig iptables on</span><br><span class="line">truechkconfig pptpd on</span><br><span class="line">  </span><br><span class="line">trueservice iptables start</span><br><span class="line">trueservice pptpd start</span><br><span class="line">  </span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"VPN service is installed, your VPN username is vpn, VPN password is <span class="variable">$&#123;pass&#125;</span>"</span></span><br><span class="line">true</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">repaireVPN</span></span>()&#123;</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"begin to repaire VPN"</span>;</span><br><span class="line">truemknod /dev/ppp c 108 0</span><br><span class="line">trueservice iptables restart</span><br><span class="line">trueservice pptpd start</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">addVPNuser</span></span>()&#123;</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"input user name:"</span></span><br><span class="line">true<span class="built_in">read</span> username</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"input password:"</span></span><br><span class="line">true<span class="built_in">read</span> userpassword</span><br><span class="line">true<span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;username&#125;</span> pptpd <span class="variable">$&#123;userpassword&#125;</span> *"</span> &gt;&gt; /etc/ppp/chap-secrets</span><br><span class="line">trueservice iptables restart</span><br><span class="line">trueservice pptpd start</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="built_in">echo</span> <span class="string">"which do you want to?input the number."</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1. install VPN service"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2. repaire VPN service"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"3. add VPN user"</span></span><br><span class="line"><span class="built_in">read</span> num</span><br><span class="line">  </span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$num</span>"</span> <span class="keyword">in</span></span><br><span class="line">[1] ) (installVPN);;</span><br><span class="line">[2] ) (repaireVPN);;</span><br><span class="line">[3] ) (addVPNuser);;</span><br><span class="line">*) <span class="built_in">echo</span> <span class="string">"nothing,exit"</span>;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/技术/">技术</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2018 lidapao
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

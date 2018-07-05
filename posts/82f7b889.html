@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Nginx反向代理Google | 李大炮的研发日记 | 不折腾，和咸鱼有什么区别？</title>
+
+  
+  <meta name="author" content="lidapao">
+  
+
+  
+  <meta name="description" content="基于Nginx扩展模块https://github.com/cuber/ngx_http_google_filter_module/blob/master/README.zh-CN.md
+0x01 安装 gcc &amp;amp; git1apt-get install build-essential git gcc g++ make
+0x02 下载最新版源码nginx 官网:http://nginx.org/en/download.html1wget http://nginx.org/download/nginx-1.9.12.tar.gz">
+  
+
+  
+  
+  <meta name="keywords" content="技术,nginx">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Nginx反向代理Google"/>
+
+  <meta property="og:site_name" content="李大炮的研发日记"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="李大炮的研发日记" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">李大炮的研发日记</a>
+    </h1>
+    <p class="site-description">不折腾，和咸鱼有什么区别？</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/about/">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Nginx反向代理Google</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/82f7b889.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-10-04T16:00:00.000Z">
+          2017-10-05
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h4 id="基于Nginx扩展模块"><a href="#基于Nginx扩展模块" class="headerlink" title="基于Nginx扩展模块"></a>基于Nginx扩展模块</h4><p><a href="https://github.com/cuber/ngx_http_google_filter_module/blob/master/README.zh-CN.md" target="_blank" rel="noopener">https://github.com/cuber/ngx_http_google_filter_module/blob/master/README.zh-CN.md</a></p>
+<h4 id="0x01-安装-gcc-amp-git"><a href="#0x01-安装-gcc-amp-git" class="headerlink" title="0x01 安装 gcc &amp; git"></a>0x01 安装 gcc &amp; git</h4><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">apt</span>-<span class="meta">get</span> install <span class="keyword">build-essential </span>git gcc g++ make</span><br></pre></td></tr></table></figure>
+<h4 id="0x02-下载最新版源码"><a href="#0x02-下载最新版源码" class="headerlink" title="0x02 下载最新版源码"></a>0x02 下载最新版源码</h4><p>nginx 官网:<br><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a><br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="regexp">//</span>nginx.org<span class="regexp">/download/</span>nginx-<span class="number">1.9</span>.<span class="number">12</span>.tar.gz</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h4 id="0x03-下载最新版-pcre"><a href="#0x03-下载最新版-pcre" class="headerlink" title="0x03 下载最新版 pcre"></a>0x03 下载最新版 pcre</h4><p>pcre 官网:<br><a href="http://www.pcre.org/" target="_blank" rel="noopener">http://www.pcre.org/</a><br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget ftp:<span class="regexp">//</span>ftp.csx.cam.ac.uk<span class="regexp">/pub/</span>software<span class="regexp">/programming/</span>pcre<span class="regexp">/pcre-8.37.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="0x04-下载最新版-openssl"><a href="#0x04-下载最新版-openssl" class="headerlink" title="0x04 下载最新版 openssl"></a>0x04 下载最新版 openssl</h4><p>opessl 官网:<br><a href="https://www.openssl.org/" target="_blank" rel="noopener">https://www.openssl.org/</a><br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="regexp">//</span>www.openssl.org<span class="regexp">/source/</span>openssl-<span class="number">1.0</span>.<span class="number">1</span>j.tar.gz</span><br></pre></td></tr></table></figure></p>
+<h4 id="0x05下载最新版-zlib"><a href="#0x05下载最新版-zlib" class="headerlink" title="0x05下载最新版 zlib"></a>0x05下载最新版 zlib</h4><p>zlib 官网:<br><a href="http://www.zlib.net/" target="_blank" rel="noopener">http://www.zlib.net/</a><br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">http:</span><span class="comment">//zlib.net/zlib-1.2.8.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="0x06-下载google扩展"><a href="#0x06-下载google扩展" class="headerlink" title="0x06 下载google扩展"></a>0x06 下载google扩展</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/cuber/ngx_http_google_filter_module</span><br></pre></td></tr></table></figure>
+<h4 id="0x07-下载-substitutions-扩展"><a href="#0x07-下载-substitutions-扩展" class="headerlink" title="0x07 下载 substitutions 扩展"></a>0x07 下载 substitutions 扩展</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/yaoweibin/ngx_http_substitutions_filter_module</span><br></pre></td></tr></table></figure>
+<h4 id="0x08-解压缩"><a href="#0x08-解压缩" class="headerlink" title="0x08 解压缩"></a>0x08 解压缩</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">tar</span> <span class="selector-tag">xzvf</span> <span class="selector-tag">nginx-1</span><span class="selector-class">.9</span><span class="selector-class">.12</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br><span class="line"><span class="selector-tag">tar</span> <span class="selector-tag">xzvf</span> <span class="selector-tag">pcre-8</span><span class="selector-class">.37</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br><span class="line"><span class="selector-tag">tar</span> <span class="selector-tag">xzvf</span> <span class="selector-tag">openssl-1</span><span class="selector-class">.0</span><span class="selector-class">.1j</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br><span class="line"><span class="selector-tag">tar</span> <span class="selector-tag">xzvf</span> <span class="selector-tag">zlib-1</span><span class="selector-class">.2</span><span class="selector-class">.8</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br></pre></td></tr></table></figure>
+<h4 id="0x09-编译与安装"><a href="#0x09-编译与安装" class="headerlink" title="0x09 编译与安装"></a>0x09 编译与安装</h4><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 进入 nginx 源码目录</span><br><span class="line">cd nginx-1.9.12</span><br><span class="line"></span><br><span class="line"># 设置编译选项</span><br><span class="line">./configure \</span><br><span class="line">  -<span class="ruby">-with-pcre=../pcre-<span class="number">8.37</span> \</span></span><br><span class="line"><span class="ruby">  --with-openssl=../openssl-<span class="number">1.0</span>.<span class="number">1</span>j \</span></span><br><span class="line"><span class="ruby">  --with-zlib=../zlib-<span class="number">1.2</span>.<span class="number">8</span> \</span></span><br><span class="line"><span class="ruby">  --with-http_ssl_module \</span></span><br><span class="line"><span class="ruby">  --add-<span class="class"><span class="keyword">module</span>=../<span class="title">ngx_http_google_filter_module</span> \</span></span></span><br><span class="line"><span class="ruby">  --add-<span class="class"><span class="keyword">module</span>=../<span class="title">ngx_http_substitutions_filter_module</span></span></span></span><br><span class="line"><span class="ruby"></span></span><br><span class="line"><span class="ruby"><span class="comment"># 编译安装</span></span></span><br><span class="line"><span class="ruby">make	</span></span><br><span class="line"><span class="ruby">make install</span></span><br></pre></td></tr></table></figure>
+<h4 id="0x10-其中http的配置方式"><a href="#0x10-其中http的配置方式" class="headerlink" title="0x10 其中http的配置方式"></a>0x10 其中http的配置方式</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">true<span class="attribute">server_name</span> &lt;你的域名&gt;;</span><br><span class="line">true<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">true<span class="attribute">resolver</span> <span class="number">8.8.8.8</span>;</span><br><span class="line">true<span class="attribute">location</span> / &#123;</span><br><span class="line">truetrue<span class="attribute">google</span> <span class="literal">on</span>;</span><br><span class="line">true&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/技术/">技术</a><a href="/tags/nginx/">nginx</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2018 lidapao
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

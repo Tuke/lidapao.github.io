@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>至博客 | 李大炮的研发日记 | 不折腾，和咸鱼有什么区别？</title>
+
+  
+  <meta name="author" content="lidapao">
+  
+
+  
+  <meta name="description" content="0x01 背景　　之前一直在用有道云笔记，去年的这个时候，喜欢上了Markdown的写作方式，但是有道云笔记不支持，就动了搭个私有博客的念头，但是一直没抽出时间去折腾，这次在玩Docker顺手就把博客给搭了。
+　　在搭建博客的时候，选择了Hexo和Ghost做对比，考虑了很久，最后还是选择了Hexo。">
+  
+
+  
+  
+  <meta name="keywords" content="随笔">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="至博客"/>
+
+  <meta property="og:site_name" content="李大炮的研发日记"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="李大炮的研发日记" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">李大炮的研发日记</a>
+    </h1>
+    <p class="site-description">不折腾，和咸鱼有什么区别？</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/about/">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>至博客</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/b1e94361.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-07-31T16:00:00.000Z">
+          2017-08-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h4 id="0x01-背景"><a href="#0x01-背景" class="headerlink" title="0x01 背景"></a>0x01 背景</h4><p>　　之前一直在用有道云笔记，去年的这个时候，喜欢上了Markdown的写作方式，但是有道云笔记不支持，就动了搭个私有博客的念头，但是一直没抽出时间去折腾，这次在玩Docker顺手就把博客给搭了。</p>
+<p>　　在搭建博客的时候，选择了Hexo和Ghost做对比，考虑了很久，最后还是选择了Hexo。</p>
+<a id="more"></a>
+<h4 id="0x02-博客程序"><a href="#0x02-博客程序" class="headerlink" title="0x02 博客程序"></a>0x02 博客程序</h4><p>Hexo:</p>
+<ul>
+<li>无数据库，轻量，静态博客，可脱机查阅</li>
+<li>支持Markdown</li>
+<li>详尽的中文文档</li>
+<li>可部署在github上，完全免费</li>
+</ul>
+<p>Ghost:</p>
+<ul>
+<li>有数据库，支持sqlite、mysql、postgresql</li>
+<li>支持Markdown</li>
+<li>英文文档</li>
+<li>需要自有服务器</li>
+</ul>
+<h4 id="0x03-我的博客"><a href="#0x03-我的博客" class="headerlink" title="0x03 我的博客"></a>0x03 我的博客</h4><p>经过仔细考虑，最后选了Hexo。</p>
+<ol>
+<li>作为博客越轻量越好。</li>
+<li>以Markdown文档方式进行存储，用Git进行版本管理，分布式存放。</li>
+<li>无数据库，不需要花时间去维护数据库。</li>
+<li>可脱机写作。</li>
+<li>Hexo相对可折腾性要强</li>
+</ol>
+<p>博客架构如下</p>
+<p><img src="/asset/images/framework.png" alt="博客架构"></p>
+<ol>
+<li>博客部署在一台用Docker搭建的Nginx上</li>
+<li>博客在本地电脑上进行写作，使用Git进行版本控制</li>
+<li>搭建了4个Git仓库，2个用作代码存储，2个用作博客部署。</li>
+</ol>
+<h4 id="0x04-后记"><a href="#0x04-后记" class="headerlink" title="0x04 后记"></a>0x04 后记</h4><p>本次玩Docker，从0开始，花了大概2周的时间，做了以下事情：</p>
+<ul>
+<li>搭建了梯子，后续会写出搭建过程，包括加速。</li>
+<li>搭建了博客，后续会把之前在有道云笔记的文章慢慢转过来</li>
+</ul>
+<p>最后，感谢爱折腾的自己。不折腾，和咸鱼有什么区别？</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/随笔/">随笔</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2018 lidapao
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

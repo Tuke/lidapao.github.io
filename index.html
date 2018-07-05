@@ -1,180 +1,347 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+  <title>李大炮的研发日记 | 不折腾，和咸鱼有什么区别？</title>
+
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+  <meta name="author" content="lidapao">
   
 
+  
+
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+
+  <meta property="og:site_name" content="李大炮的研发日记"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="李大炮的研发日记" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 </head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/30/hello-world/" class="article-date">
-  <time datetime="2017-07-30T03:19:01.875Z" itemprop="datePublished">2017-07-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/30/hello-world/">Hello World</a>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">李大炮的研发日记</a>
     </h1>
+    <p class="site-description">不折腾，和咸鱼有什么区别？</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/about/">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/5d5552ef.html"><span>Ubuntu使用Postfix-Dovecot-MySQL搭建邮件服务器</span></a></h3>
+    
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/5d5552ef.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-12-10T16:00:00.000Z">
+          2017-12-11
+        </time>
+      </a>
+    </span>
+  </div>
 
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="设置hostname"><a href="#设置hostname" class="headerlink" title="设置hostname"></a>设置hostname</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">"mail.example.com"</span> &gt; /etc/<span class="built_in">hostname</span></span><br><span class="line"><span class="built_in">hostname</span> -<span class="keyword">f</span></span><br></pre></td></tr></table></figure>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/30/hello-world/" data-id="cj5q5syf80000xot8ga4c0d64" class="article-share-link">Partager</a>
-      
-      
-    </footer>
+
   </div>
-  
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/技术/">技术</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
 </article>
 
 
-  
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+  <article>
 
   
     
+    <h3 class="article-title"><a href="/posts/82f7b889.html"><span>Nginx反向代理Google</span></a></h3>
+    
+  
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
-    </div>
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/82f7b889.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-10-04T16:00:00.000Z">
+          2017-10-05
+        </time>
+      </a>
+    </span>
   </div>
 
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/07/30/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h4 id="基于Nginx扩展模块"><a href="#基于Nginx扩展模块" class="headerlink" title="基于Nginx扩展模块"></a>基于Nginx扩展模块</h4><p><a href="https://github.com/cuber/ngx_http_google_filter_module/blob/master/README.zh-CN.md" target="_blank" rel="noopener">https://github.com/cuber/ngx_http_google_filter_module/blob/master/README.zh-CN.md</a></p>
+<h4 id="0x01-安装-gcc-amp-git"><a href="#0x01-安装-gcc-amp-git" class="headerlink" title="0x01 安装 gcc &amp; git"></a>0x01 安装 gcc &amp; git</h4><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">apt</span>-<span class="meta">get</span> install <span class="keyword">build-essential </span>git gcc g++ make</span><br></pre></td></tr></table></figure>
+<h4 id="0x02-下载最新版源码"><a href="#0x02-下载最新版源码" class="headerlink" title="0x02 下载最新版源码"></a>0x02 下载最新版源码</h4><p>nginx 官网:<br><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a><br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="regexp">//</span>nginx.org<span class="regexp">/download/</span>nginx-<span class="number">1.9</span>.<span class="number">12</span>.tar.gz</span><br></pre></td></tr></table></figure></p>
+      
     </div>
+
   </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 John Doe<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/技术/">技术</a><a href="/tags/nginx/">nginx</a>
+    </span>
+    
+
     </div>
+
+    
   </div>
-</footer>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/0c6ffebd.html"><span>ContOS搭建PPTP服务器</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/0c6ffebd.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-08-31T16:00:00.000Z">
+          2017-09-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>环境ContOS 6</p>
+<h4 id="1-更新yum"><a href="#1-更新yum" class="headerlink" title="1. 更新yum"></a>1. 更新yum</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">yum -y update</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-判断ppp是否可用"><a href="#2-判断ppp是否可用" class="headerlink" title="2. 判断ppp是否可用"></a>2. 判断ppp是否可用</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /dev/ppp</span><br><span class="line"><span class="comment"># cat: /dev/ppp: No such device or address</span></span><br></pre></td></tr></table></figure>
+<p>如果出现跟上面一样的信息「No such device or address」，那不用担心，这表示 ppp 是可用的，可以正常架设 pptp。</p>
+<p>如果出现的是「Permission denied」，表示 ppp 是关闭的，下面的步骤就可以不用再看了。<br>
+      
     </div>
-    <nav id="mobile-nav">
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/技术/">技术</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    
+    <h3 class="article-title"><a href="/posts/af6f8808.html"><span>Git处理配置文件等敏感信息的方法</span></a></h3>
+    
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/af6f8808.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-08-17T16:00:00.000Z">
+          2017-08-18
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>gitignore一般来说是ignore一些untracked文件（比如生成的二进制、临时文件等）<br>但如果项目中已经存在了一个已经设置了参数但各参数为空的config文件，那么最好的办法还是使用<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">update</span>-<span class="keyword">index</span> <span class="comment">--assume-unchanged config</span></span><br></pre></td></tr></table></figure></p>
+<p>这样每个本地库对config的修改都不会被track，但服务器端的config文件还在。</p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/技术/">技术</a><a href="/tags/git/">git</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/b1e94361.html"><span>至博客</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/b1e94361.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-07-31T16:00:00.000Z">
+          2017-08-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h4 id="0x01-背景"><a href="#0x01-背景" class="headerlink" title="0x01 背景"></a>0x01 背景</h4><p>　　之前一直在用有道云笔记，去年的这个时候，喜欢上了Markdown的写作方式，但是有道云笔记不支持，就动了搭个私有博客的念头，但是一直没抽出时间去折腾，这次在玩Docker顺手就把博客给搭了。</p>
+<p>　　在搭建博客的时候，选择了Hexo和Ghost做对比，考虑了很久，最后还是选择了Hexo。</p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/随笔/">随笔</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+
+<nav class="pagination">
+  
   
 </nav>
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
     
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
+    &copy; 2018 lidapao
+    
+  </p>
+</footer>
+    
   </div>
+</div>
 </body>
 </html>
