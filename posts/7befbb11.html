@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Time Datetime 使用Time模块获取当前时间123456import time()time.time()# 1470450851.211  time.strftime(&quot;%H:%M:%S&quot;)# &apos;10:35:26&apos;   使用Datetime模块获取当前时间123456# 获取一个datetime类型的时间d = datetime.datetime.now() # datetime.da">
+<meta name="keywords" content="技术,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Time Datetime 操作 日期 时间 的方法">
+<meta property="og:url" content="http://blog.lidapao.com/posts/7befbb11.html">
+<meta property="og:site_name" content="李大炮的研发日记">
+<meta property="og:description" content="Time Datetime 使用Time模块获取当前时间123456import time()time.time()# 1470450851.211  time.strftime(&quot;%H:%M:%S&quot;)# &apos;10:35:26&apos;   使用Datetime模块获取当前时间123456# 获取一个datetime类型的时间d = datetime.datetime.now() # datetime.da">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-09T11:54:20.572Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Time Datetime 操作 日期 时间 的方法">
+<meta name="twitter:description" content="Time Datetime 使用Time模块获取当前时间123456import time()time.time()# 1470450851.211  time.strftime(&quot;%H:%M:%S&quot;)# &apos;10:35:26&apos;   使用Datetime模块获取当前时间123456# 获取一个datetime类型的时间d = datetime.datetime.now() # datetime.da">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="李大炮的研发日记" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.lidapao.com/posts/7befbb11.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Time Datetime 操作 日期 时间 的方法 | 李大炮的研发日记</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8c4cb9ca617349a07d01266ad19c9070";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李大炮的研发日记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">不折腾，和咸鱼有什么区别？</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.lidapao.com/posts/7befbb11.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidapao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李大炮的研发日记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Time Datetime 操作 日期 时间 的方法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-02 20:26:09" itemprop="dateCreated datePublished" datetime="2018-05-02T20:26:09+08:00">2018-05-02</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Time-Datetime"><a href="#Time-Datetime" class="headerlink" title="Time Datetime"></a>Time Datetime</h2><blockquote>
+<p>使用Time模块获取当前时间<br><figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">time</span>()</span><br><span class="line"><span class="built_in">time</span>.<span class="built_in">time</span>()</span><br><span class="line"># <span class="number">1470450851.211</span></span><br><span class="line">  </span><br><span class="line"><span class="built_in">time</span>.strftime(<span class="string">"%H:%M:%S"</span>)</span><br><span class="line"># <span class="string">'10:35:26'</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>使用Datetime模块获取当前时间<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取一个datetime类型的时间</span></span><br><span class="line">d = datetime.datetime.now() </span><br><span class="line"><span class="comment"># datetime.datetime(2016, 8, 6, 10, 26, 9, 669000)</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> <span class="string">"%s-%s-%s %s:%s:%s "</span> % (d.year, d.month, d.day, d.hour, d.minute, d.second)</span><br><span class="line"><span class="comment"># 2016-8-6 10:38:8</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<a id="more"></a>
+<h4 id="1-将字符串的时间转换为时间戳"><a href="#1-将字符串的时间转换为时间戳" class="headerlink" title="1.将字符串的时间转换为时间戳"></a>1.将字符串的时间转换为时间戳</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">"2013-10-10 23:40:00"</span></span><br><span class="line"><span class="comment"># 将其转换为时间数组</span></span><br><span class="line">import <span class="keyword">time</span></span><br><span class="line">timeArray = time.strptime(a, <span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line"><span class="comment"># 转换为时间戳:</span></span><br><span class="line">timeStamp = <span class="keyword">int</span>(time.mktime(timeArray))</span><br><span class="line"><span class="keyword">print</span> timeStamp</span><br></pre></td></tr></table></figure>
+<h4 id="2-格式更改"><a href="#2-格式更改" class="headerlink" title="2.格式更改"></a>2.格式更改</h4><p>如a = “2013-10-10 23:40:00”<br>想改为 a = “2013/10/10 23:40:00”<br>方法:先转换为时间数组,然后转换为其他格式<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">timeArray = time.strptime(a, <span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">otherStyleTime = time.strftime(<span class="string">"%Y/%m/%d %H:%M:%S"</span>, timeArray)</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-时间戳转换为指定格式日期"><a href="#3-时间戳转换为指定格式日期" class="headerlink" title="3.时间戳转换为指定格式日期"></a>3.时间戳转换为指定格式日期</h4><p>方法一:利用localtime()转换为时间数组,然后格式化为需要的格式,如：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">timeStamp</span> = <span class="number">1381419600</span></span><br><span class="line"><span class="attr">timeArray</span> = time.localtime(timeStamp)</span><br><span class="line"><span class="attr">otherStyleTime</span> = time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, timeArray)</span><br><span class="line"><span class="attr">otherStyletime</span> == <span class="string">"2013-10-10 23:40:00"</span></span><br></pre></td></tr></table></figure></p>
+<p>方法二:<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import datetime</span><br><span class="line">timeStamp = 1381419600</span><br><span class="line">dateArray = datetime.datetime.utcfromtimestamp(timeStamp)</span><br><span class="line">otherStyleTime = dateArray.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">otherStyletime == <span class="string">"2013-10-10 23:40:00"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="4-获取当前时间并转换为指定日期格式"><a href="#4-获取当前时间并转换为指定日期格式" class="headerlink" title="4.获取当前时间并转换为指定日期格式"></a>4.获取当前时间并转换为指定日期格式</h4><p>方法一:<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import <span class="keyword">time</span></span><br><span class="line"><span class="comment"># 获得当前时间时间戳</span></span><br><span class="line">now = <span class="keyword">int</span>(time.time())  <span class="comment"># 这是时间戳</span></span><br><span class="line"><span class="comment"># 转换为其他日期格式,如:"%Y-%m-%d %H:%M:%S"</span></span><br><span class="line">timeArray = time.localtime(timeStamp)</span><br><span class="line">otherStyleTime = time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, timeArray)</span><br></pre></td></tr></table></figure></p>
+<p>方法二:<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import datetime</span><br><span class="line"><span class="comment">#获得当前时间</span></span><br><span class="line">now = datetime.datetime.now()  <span class="comment"># 这是时间数组格式</span></span><br><span class="line"><span class="comment">#转换为指定的格式:</span></span><br><span class="line">otherStyleTime = now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-获得三天前的时间的方法"><a href="#5-获得三天前的时间的方法" class="headerlink" title="5.获得三天前的时间的方法"></a>5.获得三天前的时间的方法</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import <span class="keyword">time</span></span><br><span class="line">import datetime</span><br><span class="line"><span class="comment"># 先获得时间数组格式的日期</span></span><br><span class="line">threeDayAgo = (datetime.datetime.now() - datetime.timedelta(days = <span class="number">3</span>))</span><br><span class="line"><span class="comment"># 转换为时间戳:</span></span><br><span class="line">timeStamp = <span class="keyword">int</span>(time.mktime(threeDayAgo.timetuple()))</span><br><span class="line"><span class="comment"># 转换为其他字符串格式:</span></span><br><span class="line">otherStyleTime = threeDayAgo.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line"><span class="comment"># 注:timedelta()的参数有:days,hours,seconds,microseconds</span></span><br></pre></td></tr></table></figure>
+<h4 id="6-给定时间戳-计算该时间的几天前时间"><a href="#6-给定时间戳-计算该时间的几天前时间" class="headerlink" title="6.给定时间戳,计算该时间的几天前时间"></a>6.给定时间戳,计算该时间的几天前时间</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">timeStamp = 1381419600</span><br><span class="line"><span class="comment"># 先转换为datetime</span></span><br><span class="line">import datetime</span><br><span class="line">import time</span><br><span class="line">dateArray = datetime.datetime.utcfromtimestamp(timeStamp)</span><br><span class="line">threeDayAgo = dateArray - datetime.timedelta(days = 3)</span><br><span class="line"><span class="comment"># 参考5,可以转换为其他的任意格式了</span></span><br></pre></td></tr></table></figure>
+<h4 id="7、用Python计算昨天和明天的日期"><a href="#7、用Python计算昨天和明天的日期" class="headerlink" title="7、用Python计算昨天和明天的日期"></a>7、用Python计算昨天和明天的日期</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import datetime <span class="comment">#导入日期时间模块</span></span><br><span class="line">today = datetime.date.today() <span class="comment">#获得今天的日期</span></span><br><span class="line"><span class="keyword">print</span> today <span class="comment">#输出今天日期</span></span><br><span class="line"><span class="comment"># 2014-01-04 </span></span><br><span class="line">yesterday = today - datetime.timedelta(days=<span class="number">1</span>) <span class="comment">#用今天日期减掉时间差，参数为1天，获得昨天的日期</span></span><br><span class="line"><span class="keyword">print</span> yesterday</span><br><span class="line"><span class="comment"># 2014-01-03 </span></span><br><span class="line">tomorrow = today + datetime.timedelta(days=<span class="number">1</span>) <span class="comment">#用今天日期加上时间差，参数为1天，获得明天的日期</span></span><br><span class="line"><span class="keyword">print</span> tomorrow</span><br><span class="line"><span class="comment"># 2014-01-05 </span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"昨天:%s， 今天:%s， 明天：%s"</span> % (yesterday, today, tomorrow) <span class="comment">#字符串拼接在一起输出，这3天的日期</span></span><br><span class="line"><span class="comment"># 昨天:2014-01-03， 今天:2014-01-04， 明天：2014-01-05</span></span><br></pre></td></tr></table></figure>
+<h3 id="附：日期和时间的格式化参数"><a href="#附：日期和时间的格式化参数" class="headerlink" title="附：日期和时间的格式化参数"></a>附：日期和时间的格式化参数</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%a</td>
+<td>星期几的简写</td>
+</tr>
+<tr>
+<td>%A</td>
+<td>星期几的全称</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>月分的简写</td>
+</tr>
+<tr>
+<td>%B</td>
+<td>月份的全称</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>标准的日期的时间串</td>
+</tr>
+<tr>
+<td>%C</td>
+<td>年份的后两位数字</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>十进制表示的每月的第几天</td>
+</tr>
+<tr>
+<td>%D</td>
+<td>月/天/年</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>在两字符域中，十进制表示的每月的第几天</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>获取微秒</td>
+</tr>
+<tr>
+<td>%F</td>
+<td>年-月-日</td>
+</tr>
+<tr>
+<td>%g</td>
+<td>年份的后两位数字，使用基于周的年</td>
+</tr>
+<tr>
+<td>%G</td>
+<td>年分，使用基于周的年</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>简写的月份名</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>24小时制的小时</td>
+</tr>
+<tr>
+<td>%I</td>
+<td>12小时制的小时</td>
+</tr>
+<tr>
+<td>%j</td>
+<td>十进制表示的每年的第几天</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>十进制表示的月份</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>十时制表示的分钟数</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>新行符</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>本地的AM或PM的等价显示</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>12小时的时间</td>
+</tr>
+<tr>
+<td>%R</td>
+<td>显示小时和分钟：hh:mm</td>
+</tr>
+<tr>
+<td>%S</td>
+<td>十进制的秒数</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>水平制表符</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>显示时分秒：hh:mm:ss</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>每周的第几天，星期一为第一天 （值从0到6，星期一为0）</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>第年的第几周，把星期日做为第一天（值从0到53）</td>
+</tr>
+<tr>
+<td>%V</td>
+<td>每年的第几周，使用基于周的年</td>
+</tr>
+<tr>
+<td>%w</td>
+<td>十进制表示的星期几（值从0到6，星期天为0）</td>
+</tr>
+<tr>
+<td>%W</td>
+<td>每年的第几周，把星期一做为第一天（值从0到53）</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>标准的日期串</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>标准的时间串</td>
+</tr>
+<tr>
+<td>%y</td>
+<td>不带世纪的十进制年份（值从0到99）</td>
+</tr>
+<tr>
+<td>%Y</td>
+<td>带世纪部分的十制年份</td>
+</tr>
+<tr>
+<td>%z，%Z</td>
+<td>时区名称，如果不能得到时区名称则返回空字符。</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>百分号</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag"># 技术</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/38ff2f6e.html" rel="next" title="http header详解">
+                <i class="fa fa-chevron-left"></i> http header详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/d6944fb1.html" rel="prev" title="time模块详解">
+                time模块详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidapao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Time-Datetime"><span class="nav-number">1.</span> <span class="nav-text">Time Datetime</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-将字符串的时间转换为时间戳"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.将字符串的时间转换为时间戳</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-格式更改"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.格式更改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-时间戳转换为指定格式日期"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.时间戳转换为指定格式日期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-获取当前时间并转换为指定日期格式"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.获取当前时间并转换为指定日期格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-获得三天前的时间的方法"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.获得三天前的时间的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-给定时间戳-计算该时间的几天前时间"><span class="nav-number">1.0.6.</span> <span class="nav-text">6.给定时间戳,计算该时间的几天前时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、用Python计算昨天和明天的日期"><span class="nav-number">1.0.7.</span> <span class="nav-text">7、用Python计算昨天和明天的日期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附：日期和时间的格式化参数"><span class="nav-number">1.1.</span> <span class="nav-text">附：日期和时间的格式化参数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidapao</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

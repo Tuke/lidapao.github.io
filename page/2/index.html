@@ -108,18 +108,13 @@
 
 
 
-  <meta name="description" content="1.安装 Microsoft Visual C++ Compiler Package for Python 2.7下载链接 2.安装 MySQL Connector C 6.0.2下载链接 3.下载 MySQL-python 1.2.5 源码包下载链接">
-<meta name="keywords" content="技术,python">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Windows x64安装MySQL-Python">
-<meta property="og:url" content="http://blog.lidapao.com/posts/1c8af394.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="李大炮的研发日记">
+<meta property="og:url" content="http://blog.lidapao.com/page/2/index.html">
 <meta property="og:site_name" content="李大炮的研发日记">
-<meta property="og:description" content="1.安装 Microsoft Visual C++ Compiler Package for Python 2.7下载链接 2.安装 MySQL Connector C 6.0.2下载链接 3.下载 MySQL-python 1.2.5 源码包下载链接">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-09T11:54:36.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows x64安装MySQL-Python">
-<meta name="twitter:description" content="1.安装 Microsoft Visual C++ Compiler Package for Python 2.7下载链接 2.安装 MySQL Connector C 6.0.2下载链接 3.下载 MySQL-python 1.2.5 源码包下载链接">
+<meta name="twitter:title" content="李大炮的研发日记">
 
 
 
@@ -128,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.lidapao.com/posts/1c8af394.html"/>
+  <link rel="canonical" href="http://blog.lidapao.com/page/2/"/>
 
 
 
@@ -138,7 +133,7 @@
   };
 </script>
 
-  <title>Windows x64安装MySQL-Python | 李大炮的研发日记</title>
+  <title>李大炮的研发日记</title>
   
 
 
@@ -195,7 +190,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -288,9 +284,9 @@
           
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -305,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.lidapao.com/posts/1c8af394.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.lidapao.com/posts/b1e94361.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lidapao">
@@ -322,7 +318,11 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Windows x64安装MySQL-Python
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/b1e94361.html" itemprop="url">
+                  至博客
+                </a>
               
             
           </h1>
@@ -347,7 +347,7 @@
                 
               
 
-              <time title="创建时间：2018-01-28 00:37:31" itemprop="dateCreated datePublished" datetime="2018-01-28T00:37:31+08:00">2018-01-28</time>
+              <time title="创建时间：2017-08-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-08-01T00:00:00+08:00">2017-08-01</time>
             
 
             
@@ -381,20 +381,17 @@
       
 
       
-        <h4 id="1-安装-Microsoft-Visual-C-Compiler-Package-for-Python-2-7"><a href="#1-安装-Microsoft-Visual-C-Compiler-Package-for-Python-2-7" class="headerlink" title="1.安装 Microsoft Visual C++ Compiler Package for Python 2.7"></a>1.安装 Microsoft Visual C++ Compiler Package for Python 2.7</h4><p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=44266" target="_blank" rel="noopener">下载链接</a></p>
-<h4 id="2-安装-MySQL-Connector-C-6-0-2"><a href="#2-安装-MySQL-Connector-C-6-0-2" class="headerlink" title="2.安装 MySQL Connector C 6.0.2"></a>2.安装 MySQL Connector C 6.0.2</h4><p><a href="https://dev.mysql.com/downloads/connector/c/6.0.html" target="_blank" rel="noopener">下载链接</a></p>
-<h4 id="3-下载-MySQL-python-1-2-5-源码包"><a href="#3-下载-MySQL-python-1-2-5-源码包" class="headerlink" title="3.下载 MySQL-python 1.2.5 源码包"></a>3.下载 MySQL-python 1.2.5 源码包</h4><p><a href="https://pypi.python.org/pypi/MySQL-python/1.2.5" target="_blank" rel="noopener">下载链接</a></p>
-<a id="more"></a>
-<h4 id="4-解压源码包后，修改-site-cfg-文件。"><a href="#4-解压源码包后，修改-site-cfg-文件。" class="headerlink" title="4.解压源码包后，修改 site.cfg 文件。"></a>4.解压源码包后，修改 site.cfg 文件。</h4><p>实际上，如果你是在32 位系统上部署，那么通过pip install 安装MySQL-python 1.2.5 只需进行上面的依赖包安装即可。<br>但在 64 位环境中，就会提示“Cannot open include file: ‘config-win.h’” 的错误。<br>原因就是 site.cfg 中写的 MySQL Connector C 为32 位版本。</p>
-<p>原来的 site.cfg 文件内容如下：  </p>
-<pre><code># http://stackoverflow.com/questions/1972259/mysql-python-install-problem-using-virtualenv-windows-pip
-# Windows connector libs for MySQL. You need a 32-bit connector for your 32-bit Python build.
-connector = C:\Program Files (x86)\MySQL\MySQL Connector C 6.0.2
-</code></pre><p>修改为：  </p>
-<pre><code>connector = C:\Program Files\MySQL\MySQL Connector C 6.0.2
-</code></pre><h4 id="5-运行-python-setup-py-install-即可安装完成。"><a href="#5-运行-python-setup-py-install-即可安装完成。" class="headerlink" title="5.运行 python setup.py install 即可安装完成。"></a>5.运行 python setup.py install 即可安装完成。</h4><blockquote>
-</blockquote>
-
+        
+          <h4 id="0x01-背景"><a href="#0x01-背景" class="headerlink" title="0x01 背景"></a>0x01 背景</h4><p>　　之前一直在用有道云笔记，去年的这个时候，喜欢上了Markdown的写作方式，但是有道云笔记不支持，就动了搭个私有博客的念头，但是一直没抽出时间去折腾，这次在玩Docker顺手就把博客给搭了。</p>
+<p>　　在搭建博客的时候，选择了Hexo和Ghost做对比，考虑了很久，最后还是选择了Hexo。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/b1e94361.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -412,42 +409,14 @@ connector = C:\Program Files (x86)\MySQL\MySQL Connector C 6.0.2
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/技术/" rel="tag"># 技术</a>
-          
-            <a href="/tags/python/" rel="tag"># python</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/posts/49e7e186.html" rel="next" title="Python模块MSI安装错误_找不到Python路径">
-                <i class="fa fa-chevron-left"></i> Python模块MSI安装错误_找不到Python路径
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/9b20fe6e.html" rel="prev" title="注入笔记 乐m">
-                注入笔记 乐m <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -457,19 +426,18 @@ connector = C:\Program Files (x86)\MySQL\MySQL Connector C 6.0.2
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-
-
 
         </div>
         
@@ -490,17 +458,8 @@ connector = C:\Program Files (x86)\MySQL\MySQL Connector C 6.0.2
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -577,22 +536,6 @@ connector = C:\Program Files (x86)\MySQL\MySQL Connector C 6.0.2
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装-Microsoft-Visual-C-Compiler-Package-for-Python-2-7"><span class="nav-number">1.</span> <span class="nav-text">1.安装 Microsoft Visual C++ Compiler Package for Python 2.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装-MySQL-Connector-C-6-0-2"><span class="nav-number">2.</span> <span class="nav-text">2.安装 MySQL Connector C 6.0.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-下载-MySQL-python-1-2-5-源码包"><span class="nav-number">3.</span> <span class="nav-text">3.下载 MySQL-python 1.2.5 源码包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-解压源码包后，修改-site-cfg-文件。"><span class="nav-number">4.</span> <span class="nav-text">4.解压源码包后，修改 site.cfg 文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-运行-python-setup-py-install-即可安装完成。"><span class="nav-number">5.</span> <span class="nav-text">5.运行 python setup.py install 即可安装完成。</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -720,10 +663,6 @@ connector = C:\Program Files (x86)\MySQL\MySQL Connector C 6.0.2
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
-
-
 
   
 

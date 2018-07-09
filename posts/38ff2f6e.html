@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="HTTP 协议被设计得非常强大，但很多网络应用都没有利用这些强大之处。比如缓存和HTTP 方法。HTTP为资源的增删改查分别提供了PUT, DELETE, POST, GET等方法，确没有人用。所以，最近兴起的Restful只是对优化web架构、充分利用HTTP协议的能力的一个回归。下面是一些HTTP协议的概述：">
+<meta name="keywords" content="技术,http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http header详解">
+<meta property="og:url" content="http://blog.lidapao.com/posts/38ff2f6e.html">
+<meta property="og:site_name" content="李大炮的研发日记">
+<meta property="og:description" content="HTTP 协议被设计得非常强大，但很多网络应用都没有利用这些强大之处。比如缓存和HTTP 方法。HTTP为资源的增删改查分别提供了PUT, DELETE, POST, GET等方法，确没有人用。所以，最近兴起的Restful只是对优化web架构、充分利用HTTP协议的能力的一个回归。下面是一些HTTP协议的概述：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-09T11:54:46.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http header详解">
+<meta name="twitter:description" content="HTTP 协议被设计得非常强大，但很多网络应用都没有利用这些强大之处。比如缓存和HTTP 方法。HTTP为资源的增删改查分别提供了PUT, DELETE, POST, GET等方法，确没有人用。所以，最近兴起的Restful只是对优化web架构、充分利用HTTP协议的能力的一个回归。下面是一些HTTP协议的概述：">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="李大炮的研发日记" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.lidapao.com/posts/38ff2f6e.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>http header详解 | 李大炮的研发日记</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8c4cb9ca617349a07d01266ad19c9070";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李大炮的研发日记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">不折腾，和咸鱼有什么区别？</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.lidapao.com/posts/38ff2f6e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidapao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李大炮的研发日记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">http header详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-15 19:21:18" itemprop="dateCreated datePublished" datetime="2018-03-15T19:21:18+08:00">2018-03-15</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>HTTP 协议被设计得非常强大，但很多网络应用都没有利用这些强大之处。比如缓存和HTTP 方法。HTTP为资源的增删改查分别提供了PUT, DELETE, POST, GET等方法，确没有人用。所以，最近兴起的Restful只是对优化web架构、充分利用HTTP协议的能力的一个回归。下面是一些HTTP协议的概述： </p>
+<a id="more"></a>
+<h4 id="消息："><a href="#消息：" class="headerlink" title="消息："></a>消息：</h4><p>HTTP协议中顶级数据单位，使用HTTP协议通信的机器之间来回发送的数据包。</p>
+<h4 id="实体："><a href="#实体：" class="headerlink" title="实体："></a>实体：</h4><p>只出现在有消息体的消息中。它按照实体header定义的格式和编码进行传输。 </p>
+<h4 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">OPTIONS</span>: 客户端查询服务器对与某URL 允许的通信选项</span><br><span class="line"></span><br><span class="line"><span class="attribute">GET</span>: 从服务器获取URL 对应的资源 </span><br><span class="line"></span><br><span class="line">HEAD : 除了服务器响应中不能包含消息体，该方法与GET 一样。用于只需少数元信息的情况 </span><br><span class="line"></span><br><span class="line"><span class="attribute">POST</span>: 被设计用来注解、修改URL 所对应的资源 </span><br><span class="line"></span><br><span class="line"><span class="attribute">PUT</span>: 被设计用来修改或创建资源。当URL  对应的资源存在时，则提交的作为新版本，否则新建资源 </span><br><span class="line"></span><br><span class="line"><span class="attribute">DELETE</span>: 被设计用来删除URL 对应的资源 </span><br><span class="line"></span><br><span class="line"><span class="attribute">TRACE</span>: 主要用来测试。服务器将最终接收到的请求本身发送回来，作为客户端诊断依据 </span><br><span class="line"></span><br><span class="line"><span class="attribute">CONNECT：保留的方法名，用于代理切换隧道</span></span><br></pre></td></tr></table></figure>
+<p>http header 特殊参数： </p>
+<h4 id="q"><a href="#q" class="headerlink" title="q:"></a>q:</h4><p>在大多的各种header值中，都可以看到一个名为q=0.2、q=0.7 之类的参数。因为发送header主要是一个和服务器的协商过程，所以能允许 的选项一般不只一个，但具体哪个优先呢？这就需要为一些选项制定权重值。q参数的值是一个从0 到1的浮点数，默认是1，为0 表示客户端无法接收，小数点后不能超过3 位。另外，header的多个值之间用逗号分隔而不是分号。比如这个header：Accept:audio/<em>;q=0.2,audio          /basic，这表示客户端告诉服务器“我最喜欢的是一个audio/basic 类型的音频(因为它没有设置q 参数，默认是1），但如果没有，给我一个任意类型(audio/</em>)的音频也行”。当然，这只是q参数一个比较简单的应用。 </p>
+<p>常规header  :  </p>
+<table>
+<thead>
+<tr>
+<th>header</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache-Control</td>
+<td>用于指出请求/响应链上所有缓存必须服从的指令，它必须具有穿透各代理和网关的能力。HTTP1.0 可能不支持该header 和Pragma：no-cache。</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>允许客户端指出希望特定连接的选项，且禁止由代理在将来的连接中通讯。</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>表示消息发生的日期和时间，与RFC 822  中的orig-date 语义一致。</td>
+</tr>
+<tr>
+<td>Pragma</td>
+<td>用来包括实现特定的指令，可能应用到请求/响应链上所有接收方。</td>
+</tr>
+<tr>
+<td>Trailer</td>
+<td>指出给出的头部域集合在以chunked transfer-coding 编码的消息的尾部中存在。</td>
+</tr>
+<tr>
+<td>Transfer-Encoding</td>
+<td>指出应用什么类型的转换到消息主体上，与content-coding 不同，这不是指定实体的属性而是消息的 。</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>允许客户端指出其支持的其他通讯协议，切愿意使用之，若服务器发现切换是可行的，必须在响应中回101。</td>
+</tr>
+<tr>
+<td>Via</td>
+<td>必须由网关或代理来指出请求中的UA和服务器、以及在响应中的原始服务器和客户端的中间协议和接收方。用于跟踪消息转发，避免请求循环。</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>用户携带关于消息的状态和转换的额外信息，可能不在消息中反映。一般用于警告应用到消息实体上的缓存操作或转换缺少语义透明度。</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>客户端指出响应可以接受的媒体类型。</td>
+</tr>
+<tr>
+<td>Accept-Charset</td>
+<td>客户端指出响应可以接受的字符集。</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>客户端指出响应可以接受的字符编码。</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>客户端指出允许的语言。</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>客户端在受到401 后，需要向服务器标明身份，包括此header 即可。</td>
+</tr>
+<tr>
+<td>Expect</td>
+<td>客户端指出要求的特殊服务器行为。若服务器无法满足，可以返回417。</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>客户端指出要请求的资源的因特网主机和端口号。</td>
+</tr>
+<tr>
+<td>If-Match</td>
+<td>用于与方法一起使其条件化。</td>
+</tr>
+<tr>
+<td>If-Modified-Since</td>
+<td>用于方法使其条件化，如果请求的变量在本域指定的时间从来不曾修改过，则实体将不会从服务器返回，改为304。</td>
+</tr>
+<tr>
+<td>If-None-Match</td>
+<td>用于与方法一起使其条件化。</td>
+</tr>
+<tr>
+<td>If-Range</td>
+<td>用于与方法一起使其条件化。</td>
+</tr>
+<tr>
+<td>If-Unmodified-Since</td>
+<td>用于与方法一起使其条件化，如果请求的资源自header 值时间以来未改变，则服务器执行该请求。</td>
+</tr>
+<tr>
+<td>Max-Forwards</td>
+<td>提供某种机制，TRACE 和OPTIONS 方法用来限制可以转发给下个入界服务器代理或网关的数量，相当于客户端跟踪请求链。</td>
+</tr>
+<tr>
+<td>Proxy-Authorization</td>
+<td>允许客户端向代理标识自己，该代理需要认证。</td>
+</tr>
+<tr>
+<td>Range</td>
+<td>字节范围，可以指定单个实体中单个字节范围或范围集。</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>允许服务器为感兴趣的资源、日志、优化缓存等生成向后链接清单。</td>
+</tr>
+<tr>
+<td>TE</td>
+<td>指出愿意在响应中接受任何扩展的transfer-coding。</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>包含发起请求的用户代理（浏览器和OS）的信息。</td>
+</tr>
+<tr>
+<td>Accept-Ranges</td>
+<td>服务器指出对请求的资源可接受的范围，可以是字节数或none。</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>HTTP 使用改header 来传输从缓存服务器获取时的响应消息的估计年龄，是缓存服务器估计从响应产生或被原始服务器重新证实以来的总时间。</td>
+</tr>
+<tr>
+<td>ETag</td>
+<td>提供所请求的实体标签的当前值。</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>用来重定向接收方到非URI 的位置来完成请求。对于201，Location 是由请求创建的新资源的标识。</td>
+</tr>
+<tr>
+<td>Proxy-Authenticate</td>
+<td>该header 必须作为407 响应的一部分，指出认证方案和可应用到代理的URI 上的参数。</td>
+</tr>
+<tr>
+<td>Retry-After</td>
+<td>能与503 响应一起用于指出希望该服务对客户端可以维持多久，。</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>指出服务器使用的软件信息。</td>
+</tr>
+<tr>
+<td>WWW-Authenticate</td>
+<td>必须包括在401中，值至少有challenge  组成，它指出认证方案和可应用到URI 的参数。</td>
+</tr>
+<tr>
+<td>Allow</td>
+<td>客户端指出对URI 的资源允许的方法。</td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>用作对media-type  的修饰符，其值将必须应用到实体body 上的额外内容编码。主要用来允许压缩而不丢失下层媒体类型标识。</td>
+</tr>
+<tr>
+<td>Content-Language</td>
+<td>客户端指出自己所选的语言，指出目标观众对所封装实体的自然语言。这可能与实体body 内所有语言相同。</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>指出实体body 按十进制数的字节流的尺寸。</td>
+</tr>
+<tr>
+<td>Content-Location</td>
+<td>如果实体能从独立于请求URI  的位置访问，则服务器可以提供该实体自己的位置。</td>
+</tr>
+<tr>
+<td>Content-MD5</td>
+<td>是实体body 的MD5 摘要，以便提供端到端的完整性检查。</td>
+</tr>
+<tr>
+<td>Content-Range</td>
+<td>与实体body  的一部分一起发送，用来指定该部分body 应用到全部body的哪个地方。</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>指出发送给接收方的实体body 的媒体类型，媒体类型参见IANA。</td>
+</tr>
+<tr>
+<td>Expires</td>
+<td>指出响应被认为过期的日期/时间。</td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>指出原始服务器认为该变量最后修改的日期和时间，确实意思取决于原是服务器的实现和资源的属性。对文件，可能只是文件系统内最后修改时间。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>Continue</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Switching Protocols</td>
+</tr>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+<tr>
+<td>202</td>
+<td>Accepted</td>
+</tr>
+<tr>
+<td>203</td>
+<td>Non-Authoritative Information</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content</td>
+</tr>
+<tr>
+<td>205</td>
+<td>Reset Content</td>
+</tr>
+<tr>
+<td>206</td>
+<td>Partial Content</td>
+</tr>
+<tr>
+<td>300</td>
+<td>Multiple Choices</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found</td>
+</tr>
+<tr>
+<td>303</td>
+<td>See Other</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified</td>
+</tr>
+<tr>
+<td>305</td>
+<td>Use Proxy</td>
+</tr>
+<tr>
+<td>307</td>
+<td>Temporary Redirect</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Payment Required</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable</td>
+</tr>
+<tr>
+<td>407</td>
+<td>Proxy Authentication Required</td>
+</tr>
+<tr>
+<td>408</td>
+<td>Request Time-out</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone</td>
+</tr>
+<tr>
+<td>411</td>
+<td>Length Required</td>
+</tr>
+<tr>
+<td>412</td>
+<td>Precondition Failed</td>
+</tr>
+<tr>
+<td>413</td>
+<td>Request Entity Too Large</td>
+</tr>
+<tr>
+<td>414</td>
+<td>Request-URI Too Large</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported Media Type</td>
+</tr>
+<tr>
+<td>416</td>
+<td>Requested range not satisfiable</td>
+</tr>
+<tr>
+<td>417</td>
+<td>Expectation Failed</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Time-out</td>
+</tr>
+<tr>
+<td>505</td>
+<td>HTTP Version not supporte</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag"># 技术</a>
+          
+            <a href="/tags/http/" rel="tag"># http</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/9b20fe6e.html" rel="next" title="注入笔记 乐m">
+                <i class="fa fa-chevron-left"></i> 注入笔记 乐m
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/7befbb11.html" rel="prev" title="Time Datetime 操作 日期 时间 的方法">
+                Time Datetime 操作 日期 时间 的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidapao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#消息："><span class="nav-number">1.</span> <span class="nav-text">消息：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实体："><span class="nav-number">2.</span> <span class="nav-text">实体：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法："><span class="nav-number">3.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#q"><span class="nav-number">4.</span> <span class="nav-text">q:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidapao</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
