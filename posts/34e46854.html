@@ -108,17 +108,18 @@
 
 
 
-  <meta name="description" content="服务端一、安装NFS12345678910111213141516# 安装sudo yum -y install nfs-utils# 添加 NFS 开机启动sudo systemctl enable rpcbindsudo systemctl enable nfs# 启动 NFS 服务sudo systemctl start rpcbindsudo systemctl start nfs# 防">
+  <meta name="description" content="服务端一、安装NFS12345678910111213141516# 安装sudo yum -y install nfs-utils# 添加 NFS 开机启动sudo systemctl enable rpcbindsudo systemctl enable nfs# 启动 NFS 服务sudo systemctl start rpcbindsudo systemctl start nfs# 防火">
+<meta name="keywords" content="技术,CentOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Centos搭建NFS">
 <meta property="og:url" content="http://blog.lidapao.com/posts/34e46854.html">
 <meta property="og:site_name" content="李大炮的研发日记">
-<meta property="og:description" content="服务端一、安装NFS12345678910111213141516# 安装sudo yum -y install nfs-utils# 添加 NFS 开机启动sudo systemctl enable rpcbindsudo systemctl enable nfs# 启动 NFS 服务sudo systemctl start rpcbindsudo systemctl start nfs# 防">
+<meta property="og:description" content="服务端一、安装NFS12345678910111213141516# 安装sudo yum -y install nfs-utils# 添加 NFS 开机启动sudo systemctl enable rpcbindsudo systemctl enable nfs# 启动 NFS 服务sudo systemctl start rpcbindsudo systemctl start nfs# 防火">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-07T08:56:02.228Z">
+<meta property="og:updated_time" content="2019-01-07T09:26:50.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos搭建NFS">
-<meta name="twitter:description" content="服务端一、安装NFS12345678910111213141516# 安装sudo yum -y install nfs-utils# 添加 NFS 开机启动sudo systemctl enable rpcbindsudo systemctl enable nfs# 启动 NFS 服务sudo systemctl start rpcbindsudo systemctl start nfs# 防">
+<meta name="twitter:description" content="服务端一、安装NFS12345678910111213141516# 安装sudo yum -y install nfs-utils# 添加 NFS 开机启动sudo systemctl enable rpcbindsudo systemctl enable nfs# 启动 NFS 服务sudo systemctl start rpcbindsudo systemctl start nfs# 防火">
 
 
 
@@ -372,9 +373,8 @@
       
 
       
-        <a id="more"></a>
-<h1 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h1><h2 id="一、安装NFS"><a href="#一、安装NFS" class="headerlink" title="一、安装NFS"></a>一、安装NFS</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">sudo yum -y install nfs-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加 NFS 开机启动</span></span><br><span class="line">sudo systemctl <span class="builtin-name">enable</span> rpcbind</span><br><span class="line">sudo systemctl <span class="builtin-name">enable</span> nfs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 NFS 服务</span></span><br><span class="line">sudo systemctl start rpcbind</span><br><span class="line">sudo systemctl start nfs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 防火墙打开 rpc-bind 和 nfs 的服务</span></span><br><span class="line">sudo firewall-cmd <span class="attribute">--zone</span>=public --permanent <span class="attribute">--add-service</span>=rpc-bind</span><br><span class="line">sudo firewall-cmd <span class="attribute">--zone</span>=public --permanent <span class="attribute">--add-service</span>=mountd</span><br><span class="line">sudo firewall-cmd <span class="attribute">--zone</span>=public --permanent <span class="attribute">--add-service</span>=nfs</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-<!-- more -->
+        <h1 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h1><h2 id="一、安装NFS"><a href="#一、安装NFS" class="headerlink" title="一、安装NFS"></a>一、安装NFS</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">sudo yum -y install nfs-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加 NFS 开机启动</span></span><br><span class="line">sudo systemctl <span class="builtin-name">enable</span> rpcbind</span><br><span class="line">sudo systemctl <span class="builtin-name">enable</span> nfs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 NFS 服务</span></span><br><span class="line">sudo systemctl start rpcbind</span><br><span class="line">sudo systemctl start nfs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 防火墙打开 rpc-bind 和 nfs 的服务</span></span><br><span class="line">sudo firewall-cmd <span class="attribute">--zone</span>=public --permanent <span class="attribute">--add-service</span>=rpc-bind</span><br><span class="line">sudo firewall-cmd <span class="attribute">--zone</span>=public --permanent <span class="attribute">--add-service</span>=mountd</span><br><span class="line">sudo firewall-cmd <span class="attribute">--zone</span>=public --permanent <span class="attribute">--add-service</span>=nfs</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">NFS_EXPORT_DATA</span>=/data/nfs</span><br><span class="line"><span class="comment"># 创建共享目录</span></span><br><span class="line">sudo mkdir <span class="variable">$NFS_EXPORT_DATA</span></span><br><span class="line">sudo chmod 755 <span class="variable">$NFS_EXPORT_DATA</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置导出目录</span></span><br><span class="line">sudo echo &lt;&lt; EOF &gt; /etc/exports</span><br><span class="line"><span class="variable">$NFS_EXPORT_DATA</span> 192.168.0.0/16(rw,sync,no_root_squash,no_all_squash)</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">unset NFS_EXPORT_DATA</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启NFS服务</span></span><br><span class="line">sudo systemctl restart nfs</span><br></pre></td></tr></table></figure>
 <h1 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h1><h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">sudo yum -y <span class="keyword">install</span> nfs-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加开机启动</span></span><br><span class="line">sudo systemctl <span class="keyword">enable</span> rpcbind</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">sudo systemctl <span class="keyword">start</span> rpcbind</span><br></pre></td></tr></table></figure>
 <h2 id="二、挂载"><a href="#二、挂载" class="headerlink" title="二、挂载"></a>二、挂载</h2><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 查看服务端共享目录</span></span><br><span class="line"><span class="title">showmount</span> -e <span class="number">192.168</span><span class="number">.0</span><span class="number">.101</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 创建挂载目录</span></span><br><span class="line"><span class="title">sudo</span> mkdir /<span class="class"><span class="keyword">data</span>/nfs</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 挂载</span></span><br><span class="line"><span class="title">sudo</span> mount -t nfs <span class="number">192.168</span><span class="number">.0</span><span class="number">.101</span>:/<span class="class"><span class="keyword">data</span>/nfs /<span class="keyword">data</span>/nfs</span></span><br></pre></td></tr></table></figure>
@@ -398,6 +398,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag"># 技术</a>
+          
+            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+          
+        </div>
       
 
       
@@ -523,7 +531,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
