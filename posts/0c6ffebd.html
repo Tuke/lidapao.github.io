@@ -15,10 +15,10 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -32,8 +32,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -56,9 +56,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
@@ -123,12 +123,12 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="李大炮的研发日记" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="李大炮的研发日记" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://blog.lidapao.com/posts/0c6ffebd.html"/>
+  <link rel="canonical" href="http://blog.lidapao.com/posts/0c6ffebd.html">
 
 
 
@@ -188,7 +188,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -198,7 +198,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -238,7 +238,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
   </li>
         
         
@@ -246,7 +246,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
   </li>
 
       
@@ -292,20 +292,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.lidapao.com/posts/0c6ffebd.html">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lidapao">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="李大炮的研发日记">
     </span>
 
@@ -380,7 +380,7 @@
 <p>如果出现的是「Permission denied」，表示 ppp 是关闭的，下面的步骤就可以不用再看了。<br><a id="more"></a></p>
 <h4 id="3-安裝-ppp-与-iptables"><a href="#3-安裝-ppp-与-iptables" class="headerlink" title="3. 安裝 ppp 与 iptables"></a>3. 安裝 ppp 与 iptables</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install<span class="built_in"> ppp </span>iptables</span><br><span class="line">cp -rpf /etc/sysconfig/iptables /etc/sysconfig/iptables.pptpsave</span><br></pre></td></tr></table></figure>
 <h4 id="4-安装-pptp"><a href="#4-安装-pptp" class="headerlink" title="4. 安装 pptp"></a>4. 安装 pptp</h4><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 32位</span></span><br><span class="line"><span class="keyword">cd</span> <span class="string">/usr/src</span></span><br><span class="line">wget http:<span class="string">//poptop.sourceforge.net/yum/stable/rhel6/i386/pptpd-1.4.0-1.el6.i686.rpm</span>  </span><br><span class="line">rpm -ivh pptpd-1.4.0-1.el6.i686.rpm <span class="params">--force</span> <span class="params">--nodeps</span>  </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 64位</span></span><br><span class="line"><span class="keyword">cd</span> <span class="string">/usr/src</span></span><br><span class="line">wget http:<span class="string">//poptop.sourceforge.net/yum/stable/rhel6/x86_64/pptpd-1.4.0-1.el6.x86_64.rpm</span>  <span class="comment"># 64</span></span><br><span class="line">rpm -ivh pptpd-1.4.0-1.el6.x86_64.rpm <span class="params">--force</span> <span class="params">--nodeps</span></span><br></pre></td></tr></table></figure>
-<h4 id="6-允许数据包转发"><a href="#6-允许数据包转发" class="headerlink" title="6. 允许数据包转发"></a>6. 允许数据包转发</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf  </span><br><span class="line">  </span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Controls IP packet forwarding</span></span><br><span class="line">net.ipv4.ip_forward = 1</span><br></pre></td></tr></table></figure>
+<h4 id="6-允许数据包转发"><a href="#6-允许数据包转发" class="headerlink" title="6. 允许数据包转发"></a>6. 允许数据包转发</h4><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf  </span><br><span class="line">  </span><br><span class="line"><span class="meta"># 设置:</span></span><br><span class="line"><span class="meta"># Controls IP packet forwarding</span></span><br><span class="line">net.ipv4.ip_forward = <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <h4 id="7-执行下面命令"><a href="#7-执行下面命令" class="headerlink" title="7. 执行下面命令"></a>7. 执行下面命令</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p # 调整内核参数</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 追加pptp配置</span></span><br><span class="line">echo <span class="string">"localip 192.168.240.1"</span> &gt;&gt; /etc/pptpd.conf</span><br><span class="line">echo <span class="string">"remoteip 192.168.240.101-200"</span> &gt;&gt; /etc/pptpd.conf</span><br><span class="line">echo <span class="string">"ms-dns 8.8.8.8"</span> &gt;&gt; /etc/ppp/options.pptpd</span><br><span class="line">echo <span class="string">"ms-dns 8.8.4.4"</span> &gt;&gt; /etc/ppp/options.pptpd</span><br><span class="line">   </span><br><span class="line"><span class="comment"># 配置防火墙</span></span><br><span class="line">iptables --flush POSTROUTING --table nat</span><br><span class="line">iptables --flush FORWARD</span><br><span class="line">iptables -A INPUT -p tcp -m tcp --dport 1723 -j ACCEPT</span><br><span class="line">iptables -A INPUT -p gre -j ACCEPT</span><br><span class="line">iptables -t<span class="built_in"> nat </span>-A POSTROUTING -s 192.168.240.0/24 -o eth0 -j MASQUERADE</span><br><span class="line"><span class="comment"># 重启服务</span></span><br><span class="line">service iptables save</span><br><span class="line">service pptpd restart</span><br><span class="line">service iptables restart</span><br><span class="line">chkconfig pptpd on</span><br><span class="line">chkconfig iptables on</span><br></pre></td></tr></table></figure>
 <p>上面这些指令会创造一个 192.168.240.* 的网段给连上来的 vpn 用户使用，并通过 Server 上的 eth0 转送对外上网的封包 (你可以自行将 192.168.240 与 eth0 改成符合你需求的设定)。</p>
 <h4 id="8-加入-VPN-账号"><a href="#8-加入-VPN-账号" class="headerlink" title="8. 加入 VPN 账号"></a>8. 加入 VPN 账号</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="meta-keyword">/etc/</span>ppp/chap-secrets</span><br><span class="line">  </span><br><span class="line"><span class="meta"># 帐号名称 pptpd 密码 *</span></span><br></pre></td></tr></table></figure>
@@ -500,7 +500,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">lidapao</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -513,7 +513,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -527,6 +527,10 @@
                 <div class="site-state-item site-state-tags">
                   
                     
+                    
+                      
+                    
+                      
                     
                       
                     
@@ -585,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-更新yum"><span class="nav-number">1.</span> <span class="nav-text">1. 更新yum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-判断ppp是否可用"><span class="nav-number">2.</span> <span class="nav-text">2. 判断ppp是否可用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安裝-ppp-与-iptables"><span class="nav-number">3.</span> <span class="nav-text">3. 安裝 ppp 与 iptables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-安装-pptp"><span class="nav-number">4.</span> <span class="nav-text">4. 安装 pptp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-允许数据包转发"><span class="nav-number">5.</span> <span class="nav-text">6. 允许数据包转发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-执行下面命令"><span class="nav-number">6.</span> <span class="nav-text">7. 执行下面命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-加入-VPN-账号"><span class="nav-number">7.</span> <span class="nav-text">8. 加入 VPN 账号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误处理"><span class="nav-number"></span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#807-错误"><span class="nav-number">1.</span> <span class="nav-text">807 错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#734-错误"><span class="nav-number">2.</span> <span class="nav-text">734 错误</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-更新yum"><span class="nav-number">1.</span> <span class="nav-text">1. 更新yum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-判断ppp是否可用"><span class="nav-number">2.</span> <span class="nav-text">2. 判断ppp是否可用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安裝-ppp-与-iptables"><span class="nav-number">3.</span> <span class="nav-text">3. 安裝 ppp 与 iptables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-安装-pptp"><span class="nav-number">4.</span> <span class="nav-text">4. 安装 pptp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-允许数据包转发"><span class="nav-number">5.</span> <span class="nav-text">6. 允许数据包转发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-执行下面命令"><span class="nav-number">6.</span> <span class="nav-text">7. 执行下面命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-加入-VPN-账号"><span class="nav-number">7.</span> <span class="nav-text">8. 加入 VPN 账号</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#错误处理"><span class="nav-number"></span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#807-错误"><span class="nav-number">1.</span> <span class="nav-text">807 错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#734-错误"><span class="nav-number">2.</span> <span class="nav-text">734 错误</span></a></li></ol></li></div>
             
 
           </div>
@@ -605,7 +609,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -619,7 +623,7 @@
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
